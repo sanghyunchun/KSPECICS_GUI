@@ -1,0 +1,1 @@
+pyside6-uic kspec_simple_20241001.ui -o ui_mainwindow.py
