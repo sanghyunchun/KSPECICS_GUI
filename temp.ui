@@ -29,7 +29,7 @@
      </font>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ADC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string/>
     </property>
     <property name="whatsThis">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Home&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -611,10 +611,10 @@
      <widget class="QGroupBox" name="group_preview">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>180</y>
+        <x>660</x>
+        <y>187</y>
         <width>721</width>
-        <height>751</height>
+        <height>750</height>
        </rect>
       </property>
       <property name="font">
@@ -629,71 +629,11 @@
       <property name="title">
        <string>Preview</string>
       </property>
-      <widget class="QGraphicsView" name="graphicsView_gfa1">
-       <property name="geometry">
-        <rect>
-         <x>460</x>
-         <y>60</y>
-         <width>110</width>
-         <height>110</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_gfa2">
-       <property name="geometry">
-        <rect>
-         <x>460</x>
-         <y>200</y>
-         <width>110</width>
-         <height>110</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_gfa3">
-       <property name="geometry">
-        <rect>
-         <x>460</x>
-         <y>330</y>
-         <width>110</width>
-         <height>110</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_gfa4">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>330</y>
-         <width>110</width>
-         <height>110</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_gfa5">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>60</y>
-         <width>110</width>
-         <height>110</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_gfa6">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>200</y>
-         <width>110</width>
-         <height>110</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_gfa1">
        <property name="geometry">
         <rect>
-         <x>460</x>
-         <y>40</y>
+         <x>480</x>
+         <y>50</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -714,8 +654,8 @@
       <widget class="QLabel" name="label_gfa2">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>40</y>
+         <x>613</x>
+         <y>50</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -736,8 +676,8 @@
       <widget class="QLabel" name="label_gfa3">
        <property name="geometry">
         <rect>
-         <x>460</x>
-         <y>180</y>
+         <x>480</x>
+         <y>200</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -758,8 +698,8 @@
       <widget class="QLabel" name="label_gfa4">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>180</y>
+         <x>613</x>
+         <y>200</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -780,8 +720,8 @@
       <widget class="QLabel" name="label_gfa5">
        <property name="geometry">
         <rect>
-         <x>460</x>
-         <y>310</y>
+         <x>480</x>
+         <y>350</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -802,8 +742,8 @@
       <widget class="QLabel" name="label_gfa6">
        <property name="geometry">
         <rect>
-         <x>590</x>
-         <y>310</y>
+         <x>613</x>
+         <y>350</y>
          <width>71</width>
          <height>16</height>
         </rect>
@@ -821,13 +761,60 @@
         <string>Guide 6</string>
        </property>
       </widget>
+      <widget class="QTabWidget" name="tabWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>28</y>
+         <width>428</width>
+         <height>461</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="Blue">
+        <attribute name="title">
+         <string>Blue</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QFrame" name="frame_B">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="Red">
+        <attribute name="title">
+         <string>Red</string>
+        </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QFrame" name="frame_R">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
       <widget class="QTabWidget" name="tabWidget_spectrum">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>490</y>
          <width>711</width>
-         <height>261</height>
+         <height>260</height>
         </rect>
        </property>
        <property name="layoutDirection">
@@ -840,7 +827,7 @@
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="elideMode">
         <enum>Qt::ElideLeft</enum>
@@ -849,14 +836,20 @@
         <attribute name="title">
          <string>Blue</string>
         </attribute>
-        <widget class="QGraphicsView" name="graphicsView_blue_spectrum">
+        <widget class="QFrame" name="spec_B">
          <property name="geometry">
           <rect>
-           <x>0</x>
-           <y>7</y>
-           <width>701</width>
-           <height>211</height>
+           <x>3</x>
+           <y>1</y>
+           <width>700</width>
+           <height>220</height>
           </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
          </property>
         </widget>
        </widget>
@@ -864,50 +857,119 @@
         <attribute name="title">
          <string>Red</string>
         </attribute>
-        <widget class="QGraphicsView" name="graphicsView_red_spectrum">
+        <widget class="QFrame" name="spec_R">
          <property name="geometry">
           <rect>
            <x>3</x>
            <y>1</y>
-           <width>701</width>
-           <height>231</height>
+           <width>700</width>
+           <height>220</height>
           </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
          </property>
         </widget>
        </widget>
       </widget>
-      <widget class="QTabWidget" name="tabWidget_2">
+      <widget class="QFrame" name="Guide1">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>30</y>
-         <width>451</width>
-         <height>451</height>
+         <x>460</x>
+         <y>70</y>
+         <width>110</width>
+         <height>110</height>
         </rect>
        </property>
-       <property name="currentIndex">
-        <number>0</number>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
        </property>
-       <widget class="QWidget" name="Blue">
-        <attribute name="title">
-         <string>Blue</string>
-        </attribute>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QGraphicsView" name="graphicsView_main"/>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="Red">
-        <attribute name="title">
-         <string>Red</string>
-        </attribute>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QGraphicsView" name="graphicsView_main_2"/>
-         </item>
-        </layout>
-       </widget>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Guide2">
+       <property name="geometry">
+        <rect>
+         <x>593</x>
+         <y>70</y>
+         <width>110</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Guide3">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>220</y>
+         <width>110</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Guide4">
+       <property name="geometry">
+        <rect>
+         <x>593</x>
+         <y>220</y>
+         <width>110</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Guide5">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>370</y>
+         <width>110</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="Guide6">
+       <property name="geometry">
+        <rect>
+         <x>593</x>
+         <y>370</y>
+         <width>110</width>
+         <height>110</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
       </widget>
      </widget>
      <widget class="QTabWidget" name="group_obs">
@@ -1766,7 +1828,7 @@
         <x>10</x>
         <y>900</y>
         <width>621</width>
-        <height>31</height>
+        <height>30</height>
        </rect>
       </property>
      </widget>
@@ -1784,6 +1846,7 @@
         <pointsize>14</pointsize>
         <weight>75</weight>
         <bold>true</bold>
+        <strikeout>false</strikeout>
        </font>
       </property>
       <property name="title">
