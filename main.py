@@ -18,13 +18,14 @@ import json
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from SPECTRO.speccli import handle_spec
+import numpy as np
 
 
 class MplCanvas(FigureCanvas):
     def __init__(self, parent=None,width=5,height=5,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.):
         self.fig = Figure(figsize=(width, height),dpi=dpi)
         self.ax = self.fig.add_subplot(111)
-        self.fig.subplots_adjust(left=0.00,right=1.,bottom=0.0,top=1.) 
+        self.fig.subplots_adjust(left=left,right=right,bottom=bottom,top=top) 
         self.ax.axis('off')
         super().__init__(self.fig)
         self.setParent(parent)
@@ -44,6 +45,12 @@ class MplCanvas(FigureCanvas):
         self.ax.axis('on')
         self._initial_xlim = self.ax.get_xlim()
         self._initial_ylim = self.ax.get_ylim()
+        self.draw()
+
+    def plots(self,wave,flux):
+        self.ax.clear()
+        self.ax.plot(wave,flux,'k-')
+        self.ax.axis('on')
         self.draw()
 
     def wheelEvent(self, event):
@@ -116,20 +123,62 @@ class MainWindow(QMainWindow):
 
         self.timer.start()
 
+
+        # Button setting
         # Connect RabbitMQ server
         self.ui.pushbtn_connect.clicked.connect(self.rabbitmq_define)
         self.ui.pushbtn_connect.setCheckable(True)
 
+
+        # Guiding
+        self.ui.pushbtn_Guiding.clicked.connect(self.autoguiding)
+
+
         # Take Image
         self.ui.pushbtn_start_sequence.clicked.connect(self.take_image)
 
-        self.canvas_B=MplCanvas(self,width=5,height=5,dpi=100,left=0.00,right=0.8,bottom=0.0,top=0.8)
-        self.canvas_layout=QVBoxLayout(self.ui.frame_B)
-        self.canvas_layout.addWidget(self.canvas_B)
+        # Canvas setting
+        self.canvas_B=MplCanvas(self,width=10,height=10,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.)
+        self.B_layout=QVBoxLayout(self.ui.frame_B)
+        self.B_layout.addWidget(self.canvas_B)
 
-        self.canvas_R=MplCanvas(self,width=5,height=5,dpi=100,left=0.00,right=0.8,bottom=0.0,top=0.8)
-        self.canvas_layout=QVBoxLayout(self.ui.frame_R)
-        self.canvas_layout.addWidget(self.canvas_R)
+        self.canvas_R=MplCanvas(self,width=5,height=5,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.)
+        self.R_layout=QVBoxLayout(self.ui.frame_R)
+        self.R_layout.addWidget(self.canvas_R)
+
+        self.canvas_spec_B=MplCanvas(self,width=30,height=5,dpi=100,left=0.05,right=0.99,bottom=0.15,top=0.99)
+        self.Bspec_layout=QVBoxLayout(self.ui.spec_B)
+        self.Bspec_layout.addWidget(self.canvas_spec_B)
+
+        self.canvas_spec_R=MplCanvas(self,width=30,height=5,dpi=100,left=0.05,right=0.99,bottom=0.15,top=0.99)
+        self.Rspec_layout=QVBoxLayout(self.ui.spec_R)
+        self.Rspec_layout.addWidget(self.canvas_spec_R)
+
+        self.canvas_G1=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.G1_layout=QVBoxLayout(self.ui.Guide1)
+        self.G1_layout.addWidget(self.canvas_G1)
+
+        self.canvas_G2=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.G2_layout=QVBoxLayout(self.ui.Guide2)
+        self.G2_layout.addWidget(self.canvas_G2)
+
+        self.canvas_G3=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.G3_layout=QVBoxLayout(self.ui.Guide3)
+        self.G3_layout.addWidget(self.canvas_G3)
+
+        self.canvas_G4=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.G4_layout=QVBoxLayout(self.ui.Guide4)
+        self.G4_layout.addWidget(self.canvas_G4)
+
+        self.canvas_G5=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.G5_layout=QVBoxLayout(self.ui.Guide5)
+        self.G5_layout.addWidget(self.canvas_G5)
+
+        self.canvas_G6=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.G6_layout=QVBoxLayout(self.ui.Guide6)
+        self.G6_layout.addWidget(self.canvas_G6)
+
+
 
     @asyncSlot()
     async def rabbitmq_define(self):
@@ -152,6 +201,21 @@ class MainWindow(QMainWindow):
         self.ui.log.appendPlainText(react)
         await self.ICS_client.define_consumer()
         asyncio.create_task(self.wait_for_response())
+
+
+
+    def autoguiding(self):
+        cutimgpath='/media/shyunc/DATA/KSpec/KSPEC_ICS/GFA/kspec_gfa_controller/src/img/cutout/'
+        guidenum=['1','2','3','4']
+        G_canvas=[self.canvas_G1,self.canvas_G2,self.canvas_G3,self.canvas_G4]
+
+        for i,can in enumerate(G_canvas):
+            with fits.open(cutimgpath+'cutout_fluxmax_'+str(i+1)+'.fits') as hdul:
+                data=hdul[0].data
+
+            self.G_zmin, self.G_zmax = zs.zscale(data)
+            can.imshows(data,vmin=self.G_zmin,vmax=self.G_zmax,cmap='gray',origin='lower')
+        
 
 
     @asyncSlot()
@@ -202,6 +266,20 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(f"[ERROR] Could not load image {filepath}: {e}")
             self.ui.log.appendPlainText(f"Failed to load image: {e}")
+            
+
+        self.load_spec()
+
+
+
+    def load_spec(self):
+        waveb,fluxb = np.loadtxt('/media/shyunc/DATA/KSpec/Reduced/SDCH_20190322_009522.txt',skiprows=1,dtype=float,unpack=True,usecols=(0,1))
+        self.canvas_spec_B.plots(waveb,fluxb)
+
+        waver,fluxr = np.loadtxt('/media/shyunc/DATA/KSpec/Reduced/SDCK_20190322_009522.txt',skiprows=1,dtype=float,unpack=True,usecols=(0,1))
+        self.canvas_spec_R.plots(waver,fluxr)
+        self.ui.log.appendPlainText(f"Reduced spectrum loaded.")
+
 
 
 

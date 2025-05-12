@@ -20,7 +20,7 @@
       <x>20</x>
       <y>0</y>
       <width>1381</width>
-      <height>1131</height>
+      <height>971</height>
      </rect>
     </property>
     <property name="font">
@@ -827,7 +827,7 @@
         <enum>QTabWidget::Rounded</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="elideMode">
         <enum>Qt::ElideLeft</enum>
@@ -1405,6 +1405,31 @@
          <number>24</number>
         </property>
        </widget>
+       <widget class="QPushButton" name="pushbtn_Guiding">
+        <property name="geometry">
+         <rect>
+          <x>460</x>
+          <y>220</y>
+          <width>151</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+          <strikeout>false</strikeout>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set the information of the observation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Guiding/Stop</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_single">
        <attribute name="title">
@@ -1484,7 +1509,7 @@
         <widget class="QWidget" name="layoutWidget_5">
          <property name="geometry">
           <rect>
-           <x>110</x>
+           <x>10</x>
            <y>220</y>
            <width>179</width>
            <height>33</height>
