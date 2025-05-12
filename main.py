@@ -6,7 +6,7 @@ from PySide6.QtCore import *
 from PySide6.QtWidgets import (
         QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox
 )
-from PySide6.QtGui import QMouseEvent
+from PySide6.QtGui import QMouseEvent, QGuiApplication
 from ui_temp import Ui_MainWindow
 from qasync import QEventLoop, asyncSlot
 from astropy.io import fits
@@ -103,7 +103,19 @@ class MplCanvas(FigureCanvas):
 
 class MainWindow(QMainWindow):
     def __init__(self):
+
         super(MainWindow, self).__init__()
+        screen = QGuiApplication.primaryScreen()
+        geometry = screen.availableGeometry()
+
+        # 예: 가로/세로 해상도의 80% 크기로 초기화
+        screen_width = geometry.width()
+        screen_height = geometry.height()
+
+        window_width = int(screen_width * 0.8)
+        window_height = int(screen_height * 0.8)
+
+        self.resize(window_width, window_height)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
