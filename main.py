@@ -4,7 +4,7 @@ import asyncio
 
 from PySide6.QtCore import *
 from PySide6.QtWidgets import (
-        QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox
+        QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QSizePolicy
 )
 from PySide6.QtGui import QMouseEvent, QGuiApplication
 from ui_temp import Ui_MainWindow
@@ -22,13 +22,16 @@ import numpy as np
 
 
 class MplCanvas(FigureCanvas):
-    def __init__(self, parent=None,width=5,height=5,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.):
-        self.fig = Figure(figsize=(width, height),dpi=dpi)
+    def __init__(self, parent=None,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.):
+        self.fig = Figure(dpi=dpi)
         self.ax = self.fig.add_subplot(111)
         self.fig.subplots_adjust(left=left,right=right,bottom=bottom,top=top) 
         self.ax.axis('off')
         super().__init__(self.fig)
         self.setParent(parent)
+
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.updateGeometry()
 
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.setFocus()
@@ -150,43 +153,43 @@ class MainWindow(QMainWindow):
         self.ui.pushbtn_start_sequence.clicked.connect(self.take_image)
 
         # Canvas setting
-        self.canvas_B=MplCanvas(self,width=10,height=10,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.)
+        self.canvas_B=MplCanvas(self,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.)
         self.B_layout=QVBoxLayout(self.ui.frame_B)
         self.B_layout.addWidget(self.canvas_B)
 
-        self.canvas_R=MplCanvas(self,width=5,height=5,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.)
+        self.canvas_R=MplCanvas(self,dpi=100,left=0.00,right=1.,bottom=0.0,top=1.)
         self.R_layout=QVBoxLayout(self.ui.frame_R)
         self.R_layout.addWidget(self.canvas_R)
 
-        self.canvas_spec_B=MplCanvas(self,width=30,height=5,dpi=100,left=0.05,right=0.99,bottom=0.15,top=0.99)
+        self.canvas_spec_B=MplCanvas(self,dpi=100,left=0.05,right=0.99,bottom=0.15,top=0.99)
         self.Bspec_layout=QVBoxLayout(self.ui.spec_B)
         self.Bspec_layout.addWidget(self.canvas_spec_B)
 
-        self.canvas_spec_R=MplCanvas(self,width=30,height=5,dpi=100,left=0.05,right=0.99,bottom=0.15,top=0.99)
+        self.canvas_spec_R=MplCanvas(self,dpi=100,left=0.05,right=0.99,bottom=0.15,top=0.99)
         self.Rspec_layout=QVBoxLayout(self.ui.spec_R)
         self.Rspec_layout.addWidget(self.canvas_spec_R)
 
-        self.canvas_G1=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.canvas_G1=MplCanvas(self,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
         self.G1_layout=QVBoxLayout(self.ui.Guide1)
         self.G1_layout.addWidget(self.canvas_G1)
 
-        self.canvas_G2=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.canvas_G2=MplCanvas(self,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
         self.G2_layout=QVBoxLayout(self.ui.Guide2)
         self.G2_layout.addWidget(self.canvas_G2)
 
-        self.canvas_G3=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.canvas_G3=MplCanvas(self,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
         self.G3_layout=QVBoxLayout(self.ui.Guide3)
         self.G3_layout.addWidget(self.canvas_G3)
 
-        self.canvas_G4=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.canvas_G4=MplCanvas(self,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
         self.G4_layout=QVBoxLayout(self.ui.Guide4)
         self.G4_layout.addWidget(self.canvas_G4)
 
-        self.canvas_G5=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.canvas_G5=MplCanvas(self,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
         self.G5_layout=QVBoxLayout(self.ui.Guide5)
         self.G5_layout.addWidget(self.canvas_G5)
 
-        self.canvas_G6=MplCanvas(self,width=5,height=5,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
+        self.canvas_G6=MplCanvas(self,dpi=100,left=0.0,right=1.,bottom=0.,top=1.)
         self.G6_layout=QVBoxLayout(self.ui.Guide6)
         self.G6_layout.addWidget(self.canvas_G6)
 
